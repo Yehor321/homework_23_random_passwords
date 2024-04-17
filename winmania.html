@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <h1>Who will win now</h1>
+        <form name="myForm">
+            <div class="checkbox">
+                <label class="label_participants">
+                    <p>Participants </p>
+                    <input id="number_participants" type="number">
+                </label>
+                <label class="label_win">
+                    <p>Will win </p>
+                    <input id="number_win" type="number">
+                </label>
+            </div>
+            <button id="start">Start</button>
+        </form>
+    </main>
+    <span id="winners">The winer will be here</span>
+    <script>
+        let numberParticipantsInput = document.getElementById('number_participants');
+        let numberWinInput = document.getElementById('number_win');
+        let startButtonWin = document.getElementById('startButton');
+        let winners = document.getElementById('winners');
+        let randomNumbersWin = [];
+
+        startButtonWin.addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            await getRandomNumbers();
+
+            let numWinners = parseInt(numberWinInput.value);
+            let winnersList = '';
+
+            for (let i = 0; i < numWinners; i++) {
+                const randomIndex = Math.floor(Math.random() * randomNumbersWin.length);
+                winnersList += randomNumbersWin[randomIndex] + '<br>';
+            }
+
+            winners.innerHTML = winnersList;
+        });
+
+        async function getRandomNumbers() {
+            try {
+                const response = await fetch(`https://www.random.org/integers/?num=10&min=1&max=${numberParticipantsInput.value}&col=1&base=10&format=plain&rnd=new`);
+                const result = await response.text();
+                randomNumbersWin = result.trim().split('\n');
+            } catch (error) {
+                console.error('Error fetching random numbers:', error);
+            }
+        }
+    </script>
+</body>
+</html>

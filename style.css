@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+main {
+    border: 1px solid black;
+    padding: 30px;
+    margin-bottom: 5%;
+}
+.web_links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.web_links a {
+    text-decoration: none;
+    font-size: 20px;
+    border: 1px solid;
+    padding: 5px;
+    color: black;
+    transform: translate(-20%);
+}
+/* ///////////////////////Password////////////////////////// */
+.label_checkbox {
+    display: flex;
+    font-size: 20px; 
+}
+#password {
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+    transform: translate(-50%, -20%);
+    font-size: 30px;
+    font-weight: bold;
+}
